@@ -19,7 +19,7 @@ export class NgxSplideComponent implements AfterViewInit, OnDestroy
 {
     @Input() options: any = {};
     @Input() containerClass: string = '';
-    @Input remountTimeout: number = 300;
+    @Input() remountTimeout: number = 300;
 
     @ContentChildren(NgxSplideSlideComponent) public slides: QueryList<NgxSplideSlideComponent>;
 
