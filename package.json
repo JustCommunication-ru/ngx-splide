@@ -10,7 +10,7 @@
         "url": "https://github.com/JustCommunication-ru/ngx-splide"
     },
     "peerDependencies": {
-        "@angular/common": "^6.1.0",
-        "@angular/core": "^6.1.0"
+        "@angular/common": "*",
+        "@angular/core": "*"
     }
 }
