@@ -1,0 +1,16 @@
+{
+    "name": "ngx-splide",
+    "version": "0.0.1",
+    "description": "Angular service to load scripts dynamically during runtime",
+    "keywords": [ "Splide", "Splide.js", "slider", "carousel" ],
+    "author": "wiistriker",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JustCommunication-ru/ngx-splide"
+    },
+    "peerDependencies": {
+        "@angular/common": "^6.1.0",
+        "@angular/core": "^6.1.0"
+    }
+}
