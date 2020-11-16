@@ -1,11 +1,11 @@
 import {
-  AfterViewInit,
-  Component,
-  ContentChildren,
-  ElementRef,
-  Input,
-  QueryList,
-  ViewChild
+    AfterViewInit,
+    Component,
+    ContentChildren,
+    ElementRef,
+    Input, OnDestroy,
+    QueryList,
+    ViewChild
 } from '@angular/core';
 import { NgxSplideSlideComponent } from './ngx-splide-slide.component';
 
@@ -15,10 +15,11 @@ declare var Splide: any;
   selector: 'splide',
   templateUrl: './ngx-splide.component.html'
 })
-export class NgxSplideComponent implements AfterViewInit
+export class NgxSplideComponent implements AfterViewInit, OnDestroy
 {
     @Input() options: any = {};
     @Input() containerClass: string = '';
+    @Input remountTimeout: number = 300;
 
     @ContentChildren(NgxSplideSlideComponent) public slides: QueryList<NgxSplideSlideComponent>;
 
@@ -36,8 +37,15 @@ export class NgxSplideComponent implements AfterViewInit
 
                 setTimeout(() => {
                     this.splide.mount();
-                }, 300);
+                }, this.remountTimeout);
             })
         ;
+    }
+
+    ngOnDestroy()
+    {
+        if (this.splide) {
+            this.splide.destroy(true);
+        }
     }
 }
