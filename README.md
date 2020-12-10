@@ -15,6 +15,36 @@ Or if you prefer `yarn`
 
 `yarn add ngx-splide`
 
+Also this module doesnt have Splide.js as dependency so you need to import it yourself
+
+### With CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+```
+
+## As dependency:
+
+```
+"dependencies": {
+    //..
+    "@splidejs/splide": "^2.4.14",
+    "ngx-splide": "^0.0.4"
+    //...
+}
+```
+
+And add splide.js into your build scripts in `angular.json`:
+
+```json
+"scripts": [
+    //..
+    "node_modules/@splidejs/splide/dist/js/splide.js",
+    //..
+]
+```
+
+
 ## Setup
 
 Add `NgxSplideModule` into `app.module.ts`
