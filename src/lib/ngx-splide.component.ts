@@ -18,6 +18,7 @@ declare var Splide: any;
 export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
 {
     @Input() selectedSlideIndex: number;
+    @Output() selectedSlideIndexChange = new EventEmitter<number>();
     @Input() options: any = {};
     @Input() containerClass: string = '';
     @Input() remountTimeout: number = 300;
@@ -32,6 +33,10 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
     {
         this.splide = new Splide(this.splideElement.nativeElement, this.options);
         this.onInit.emit(this.splide);
+
+        this.splide.on('move', (newIndex, oldIndex, destIndex) => {
+            this.selectedSlideIndexChange.emit(newIndex);
+        });
 
         this.splide.mount();
 
@@ -53,7 +58,10 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
         }
 
         if (changes['selectedSlideIndex']) {
-            this.splide.go(changes['selectedSlideIndex'].currentValue);
+            const currentIndex = changes['selectedSlideIndex'].currentValue;
+            if (currentIndex !== this.splide.index) {
+                this.splide.go(currentIndex);
+            }
         }
     }
 
