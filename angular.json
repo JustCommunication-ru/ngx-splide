@@ -53,7 +53,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "app",
+            "outputPath": "docs",
             "index": "projects/ngx-splide-app/src/index.html",
             "main": "projects/ngx-splide-app/src/main.ts",
             "polyfills": "projects/ngx-splide-app/src/polyfills.ts",
