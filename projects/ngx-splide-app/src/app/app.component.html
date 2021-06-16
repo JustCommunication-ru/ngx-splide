@@ -1,0 +1,66 @@
+<main>
+    <h1 class="visually-hidden">NGX Splide examples</h1>
+
+    <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold">Default</h1>
+        <div class="col-lg-6 mx-auto">
+            <splide>
+                <splide-slide>
+                    <img src="assets/daffodil-1378489.jpg" alt="" />
+                </splide-slide>
+                <splide-slide>
+                    <img src="assets/sun-burst-1478549.jpg" alt="" />
+                </splide-slide>
+                <splide-slide>
+                    <img src="assets/sunset-jungle-1383333.jpg" alt="" />
+                </splide-slide>
+            </splide>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <splide [options]="{ type: 'loop', perPage: 1, keyboard: false, fixedHeight: 400 }">
+                    <splide-slide *ngFor="let image of images">
+                        <img [src]="image.src" alt="" />
+                    </splide-slide>
+                </splide>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">With options</h1>
+
+                <pre><code [innerText]="options_code"></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <splide [(selectedSlideIndex)]="currentImageIndex" [options]="{ type: 'loop', perPage: 1, keyboard: false, fixedHeight: 400 }">
+                    <splide-slide *ngFor="let image of images">
+                        <img [src]="image.src" alt="" />
+                    </splide-slide>
+                </splide>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Select slide</h1>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary" [ngClass]="{ 'active': index === currentImageIndex }" (click)="currentImageIndex = index" *ngFor="let image of images; let index = index">Image {{ index + 1 }}</button>
+                </div>
+
+                <p class="pt-3">
+                    <button type="button" class="btn btn-secondary" (click)="addNewSlide()">Add new slide</button>
+                </p>
+
+                <pre><code [innerText]="selected_index_code"></code></pre>
+            </div>
+        </div>
+    </div>
+</main>

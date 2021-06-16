@@ -5,7 +5,7 @@ import {
     ElementRef,
     Input, OnChanges, OnDestroy, Output,
     QueryList, SimpleChanges,
-    ViewChild, EventEmitter
+    ViewChild, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { NgxSplideSlideComponent } from './ngx-splide-slide.component';
 
@@ -13,6 +13,7 @@ declare var Splide: any;
 
 @Component({
     selector: 'splide',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './ngx-splide.component.html'
 })
 export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
@@ -29,6 +30,8 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
     @ViewChild('splideElement') splideElement: ElementRef;
     protected splide;
 
+    constructor(private cdr: ChangeDetectorRef) { }
+
     ngAfterViewInit()
     {
         this.splide = new Splide(this.splideElement.nativeElement, this.options);
@@ -42,6 +45,7 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
 
         const slidesSubscription = this.slides.changes
             .subscribe((list: QueryList<NgxSplideSlideComponent>) => {
+                this.cdr.detectChanges();
                 this.splide.destroy(true);
 
                 setTimeout(() => {
@@ -49,6 +53,8 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
                 }, this.remountTimeout);
             })
         ;
+
+        this.cdr.detectChanges();
     }
 
     ngOnChanges(changes: SimpleChanges)
