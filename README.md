@@ -5,6 +5,10 @@
 
 [Splide.js](https://splidejs.com/) integration to angular
 
+## Demo
+
+https://justcommunication-ru.github.io/ngx-splide/
+
 ## Installation
 
 Using `npm`
@@ -17,20 +21,18 @@ Or if you prefer `yarn`
 
 Also this module doesnt have Splide.js as dependency so you need to import it yourself
 
-### With CDN
+### With CDN:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 ```
 
-## As dependency:
+## Or as dependency:
 
-```
+Define splidejs dependency in your `package.json`
+```json
 "dependencies": {
-    //..
     "@splidejs/splide": "^2.4.14",
-    "ngx-splide": "^0.0.4"
-    //...
 }
 ```
 
@@ -38,9 +40,7 @@ And add splide.js into your build scripts in `angular.json`:
 
 ```json
 "scripts": [
-    //..
     "node_modules/@splidejs/splide/dist/js/splide.js",
-    //..
 ]
 ```
 
@@ -65,7 +65,7 @@ export class AppModule {}
 
 ## Usage
 
-You can use `<splide />` component with `<splide-slide />` components inside.
+You can use `<splide />` root component with `<splide-slide />` components inside.
 
 ### Basic example
 
@@ -80,7 +80,7 @@ You can use `<splide />` component with `<splide-slide />` components inside.
 </splide>
 ```
 
-### Splide options
+### With options
 
 ```angular2html
 <splide [options]="{ type: 'loop', perPage: 1, keyboard: false }">
