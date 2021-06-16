@@ -15,7 +15,7 @@
         "url": "https://github.com/JustCommunication-ru/ngx-splide"
     },
     "dependencies": {
-      "tslib": "^2.0.0"
+        "tslib": "^2.0.0"
     },
     "peerDependencies": {
         "@angular/common": "*",
