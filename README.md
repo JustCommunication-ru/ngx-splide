@@ -19,24 +19,9 @@ Or if you prefer `yarn`
 
 `yarn add ngx-splide`
 
-Also this module doesnt have Splide.js as dependency so you need to import it yourself
+## Setup
 
-### With CDN:
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
-```
-
-## Or as dependency:
-
-Define splidejs dependency in your `package.json`
-```json
-"dependencies": {
-    "@splidejs/splide": "^2.4.14",
-}
-```
-
-And add splide.js into your build scripts in `angular.json`:
+Add splide.js into your build scripts in `angular.json`:
 
 ```json
 "scripts": [
@@ -44,14 +29,14 @@ And add splide.js into your build scripts in `angular.json`:
 ]
 ```
 
+And styles if you need it:
+
 ```json
 "styles": [
     "node_modules/@splidejs/splide/dist/css/splide.min.css",
     "node_modules/@splidejs/splide/dist/css/themes/splide-default.min.css"
 ]
 ```
-
-## Setup
 
 Add `NgxSplideModule` into `app.module.ts`
 
@@ -96,7 +81,7 @@ You can use `<splide />` root component with `<splide-slide />` components insid
 </splide>
 ```
 
-Please refer to official documentation for supported options https://splidejs.com/options/
+Please refer to official documentation for the list of supported options https://splidejs.com/options/
 
 ### Get splide instance
 
@@ -138,7 +123,7 @@ You can programatically change selected splide slide with `selectedSlideIndex` o
 
 Events can be handled in two ways:
 
-#### Separated events
+#### a) Separated events
 
 ```angular2html
 <splide 
@@ -175,7 +160,7 @@ onSplideMoved(args)
 }
 ```
 
-#### Global event
+#### b) Global event
 
 ```angular2html
 <splide (onSplideEvent)="onSplideEvent($event)">

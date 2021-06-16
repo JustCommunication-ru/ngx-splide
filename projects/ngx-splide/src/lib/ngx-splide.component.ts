@@ -23,7 +23,7 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
 
     @Input() options: any = {};
     @Input() containerClass: string = '';
-    @Input() remountTimeout: number = 300;
+
     @Output() onInit = new EventEmitter<any>();
     @Output() onSplideEvent = new EventEmitter<any>();
 
@@ -66,10 +66,12 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
             .subscribe((list: QueryList<NgxSplideSlideComponent>) => {
                 this.cdr.detectChanges();
 
-                this.splide.destroy();
-                this.splide.mount();
+                setTimeout(() => {
+                    this.splide.destroy();
+                    this.splide.mount();
 
-                this.addEventListeners();
+                    this.addEventListeners();
+                });
             })
         ;
 
