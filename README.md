@@ -1,27 +1,146 @@
-# NgxSplide
+# ngx-splide
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
+![npm](https://img.shields.io/npm/v/ngx-splide)
+![npm bundle size](https://img.shields.io/bundlephobia/min/ngx-splide)
 
-## Development server
+[Splide.js](https://splidejs.com/) integration to angular
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Installation
 
-## Code scaffolding
+Using `npm`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`npm i --save ngx-splide`
 
-## Build
+Or if you prefer `yarn`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`yarn add ngx-splide`
 
-## Running unit tests
+Also this module doesnt have Splide.js as dependency so you need to import it yourself
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### With CDN
 
-## Running end-to-end tests
+```html
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## As dependency:
 
-## Further help
+```
+"dependencies": {
+    //..
+    "@splidejs/splide": "^2.4.14",
+    "ngx-splide": "^0.0.4"
+    //...
+}
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+And add splide.js into your build scripts in `angular.json`:
+
+```json
+"scripts": [
+    //..
+    "node_modules/@splidejs/splide/dist/js/splide.js",
+    //..
+]
+```
+
+
+## Setup
+
+Add `NgxSplideModule` into `app.module.ts`
+
+```typescript
+import { NgxSplideModule } from 'ngx-splide';
+
+@NgModule({
+    //...
+    imports: [
+        //...
+        NgxSplideModule
+    ],
+    //...
+})
+export class AppModule {}
+```
+
+## Usage
+
+You can use `<splide />` component with `<splide-slide />` components inside.
+
+### Basic example
+
+```angular2html
+<splide>
+    <splide-slide>
+        <img src="image1.jpg" alt="" />
+    </splide-slide>
+    <splide-slide>
+        <img src="image2.jpg" alt="" />
+    </splide-slide>
+</splide>
+```
+
+### Splide options
+
+```angular2html
+<splide [options]="{ type: 'loop', perPage: 1, keyboard: false }">
+    <splide-slide *ngFor="let image of images">
+        <img [src]="image.src" alt="" />
+    </splide-slide>
+</splide>
+```
+
+Please refer to official documentation for supported options https://splidejs.com/options/
+
+### Get splide instance
+
+```angular2html
+<splide (onInit)="onSplideInit($event)">
+    <splide-slide>
+        <img src="image1.jpg" alt="" />
+    </splide-slide>
+    <splide-slide>
+        <img src="image2.jpg" alt="" />
+    </splide-slide>
+</splide>
+```
+
+```typescript
+onSplideInit(splide)
+{
+    console.log(splide);
+}
+```
+
+### Select slide
+
+You can programatically change selected splide slide with `selectedSlideIndex` option
+
+```angular2html
+<button type="button" 
+    *ngFor="let image of images; let index = index" 
+    (click)="selectedImageIndex = index">Select image {{ index + 1 }}</button>
+
+<splide [options]="{ type: 'loop', perPage: 1, keyboard: false }">
+    <splide-slide *ngFor="image in images" [selectedSlideIndex]="selectedImageIndex">
+        <img [src]="image.src" alt="" />
+    </splide-slide>
+</splide>
+```
+
+### Other
+
+You can also pass `containerClass` to append custom class for root `div.splide` node
+
+```angular2html
+<splide containerClass="customSplideClass">
+```
+
+Will produce:
+
+```html
+<div class="splide customSplideClass">
+    ...
+</div>
+```
+
