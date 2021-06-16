@@ -42,8 +42,8 @@
     <div class="container col-xxl-8 px-4 py-5">
         <div class="row flex-lg-row align-items-center g-5 py-5">
             <div class="col-10 col-sm-8 col-lg-6">
-                <splide [(selectedSlideIndex)]="currentImageIndex" [options]="{ type: 'loop', perPage: 1, keyboard: false, fixedHeight: 400 }">
-                    <splide-slide *ngFor="let image of images">
+                <splide [(selectedSlideIndex)]="currentImageIndex" [options]="runtimeOptions">
+                    <splide-slide *ngFor="let image of runtime_images">
                         <img [src]="image.src" alt="" />
                     </splide-slide>
                 </splide>
@@ -52,14 +52,45 @@
                 <h1 class="display-5 fw-bold lh-1 mb-3">Select slide</h1>
 
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary" [ngClass]="{ 'active': index === currentImageIndex }" (click)="currentImageIndex = index" *ngFor="let image of images; let index = index">Image {{ index + 1 }}</button>
+                    <button type="button" class="btn btn-secondary" [ngClass]="{ 'active': index === currentImageIndex }" (click)="currentImageIndex = index" *ngFor="let image of runtime_images; let index = index">Image {{ index + 1 }}</button>
                 </div>
 
                 <p class="pt-3">
                     <button type="button" class="btn btn-secondary" (click)="addNewSlide()">Add new slide</button>
                 </p>
 
-                <pre><code [innerText]="selected_index_code"></code></pre>
+                <div class="mb-3">
+                    <label for="runtime-options-per-page" class="form-label">Per page</label>
+                    <select id="runtime-options-per-page" class="form-select" [(ngModel)]="runtimeOptions.perPage" (ngModelChange)="updateRuntimeOptions()">
+                        <option value="1" [ngValue]="1">1</option>
+                        <option value="2" [ngValue]="2">2</option>
+                        <option value="3" [ngValue]="3">3</option>
+                        <option value="4" [ngValue]="4">4</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="runtime-options-speed" class="form-label">Speed in ms.</label>
+                    <input id="runtime-options-speed" type="number" class="form-control" [(ngModel)]="runtimeOptions.speed" (ngModelChange)="updateRuntimeOptions()" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <splide [options]="runtimeOptions" (onSplideEvent)="onSplideEvent($event)" (onMoved)="onSplideMoved($event)">
+                    <splide-slide *ngFor="let image of images">
+                        <img [src]="image.src" alt="" />
+                    </splide-slide>
+                </splide>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Events</h1>
+                <p>Open console to see events</p>
             </div>
         </div>
     </div>

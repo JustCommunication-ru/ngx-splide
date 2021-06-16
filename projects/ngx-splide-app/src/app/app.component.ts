@@ -13,11 +13,17 @@ export class AppComponent
         { src: 'assets/sunset-jungle-1383333.jpg' }
     ];
 
+    runtime_images = [
+        { src: 'assets/daffodil-1378489.jpg' },
+        { src: 'assets/sun-burst-1478549.jpg' },
+        { src: 'assets/sunset-jungle-1383333.jpg' }
+    ];
+
     currentImageIndex = 0;
 
     addNewSlide()
     {
-        this.images.push({
+        this.runtime_images.push({
             src: 'assets/tractor-2-1386664.jpg'
         });
     }
@@ -33,4 +39,29 @@ export class AppComponent
         '        <img [src]="image.src" alt="" />\n' +
         '    </splide-slide>\n' +
         '</splide>';
+
+    runtimeOptions = {
+        type: 'loop',
+        perPage: 1,
+        keyboard: false,
+        fixedHeight: 400,
+        speed: 400
+    };
+
+    updateRuntimeOptions()
+    {
+        this.runtimeOptions = JSON.parse(JSON.stringify(this.runtimeOptions));;
+    }
+
+    onSplideEvent(event)
+    {
+        console.log('Splide event', event.name, 'with arguments', event.args);
+    }
+
+    onSplideMoved(args)
+    {
+        const newIndex = args[0];
+        const oldIndex = args[1];
+        const destIndex = args[2];
+    }
 }

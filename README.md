@@ -44,6 +44,12 @@ And add splide.js into your build scripts in `angular.json`:
 ]
 ```
 
+```json
+"styles": [
+    "node_modules/@splidejs/splide/dist/css/splide.min.css",
+    "node_modules/@splidejs/splide/dist/css/themes/splide-default.min.css"
+]
+```
 
 ## Setup
 
@@ -128,6 +134,90 @@ You can programatically change selected splide slide with `selectedSlideIndex` o
 </splide>
 ```
 
+### Events
+
+Events can be handled in two ways:
+
+#### Separated events
+
+```angular2html
+<splide 
+    (onInit)="onSplideInit($event)"
+    (onMounted)="onSplideMounted($event)"
+    (onUpdated)="onSplideUpdated($event)"
+    (onMove)="onSplideMove($event)"
+    (onMoved)="onSplideMoved($event)"
+    (onDrag)="onSplideDrag($event)"
+    (onDragged)="onSplideDragged($event)"
+    (onVisible)="onSplideVisible($event)"
+    (onHidden)="onSplideHidden($event)"
+    (onActive)="onSplideActive($event)"
+    (onInactive)="onSplideInactive($event)"
+    (onClick)="onSplideClick($event)"
+    (onArrowsMounted)="onSplideArrowsMounted($event)"
+    (onArrowsUpdated)="onSplideArrowsUpdated($event)"
+    (onPaginationMounted)="onSplidePaginationMounted($event)"
+    (onPaginationUpdated)="onSplidePaginationUpdated($event)"
+    (onNavigationMounted)="onSplideNavigationMounted($event)"
+    (onAutoplayPlay)="onSplideAutoplayPlay($event)"
+    (onAutoplayPause)="onSplideAutoplayPause($event)"
+    (onAutoplayPlaying)="onSplideAutoplayPlaying($event)"
+    (onLazyloadLoaded)="onSplideLazyloadLoaded($event)"
+>
+```
+
+```typescript
+onSplideMoved(args)
+{
+    const newIndex = args[0];
+    const oldIndex = args[1];
+    const destIndex = args[2];
+}
+```
+
+#### Global event
+
+```angular2html
+<splide (onSplideEvent)="onSplideEvent($event)">
+```
+
+Event object:
+
+```json
+{
+    "name": <event-name>,
+    "args": <event-arguments>
+}
+```
+
+```event-name``` – name of the splide event listed in https://splidejs.com/events/
+
+```event-arguments``` – array of arguments.
+
+For example `moved` event will be:
+
+```json
+{
+    "name": "moved",
+    "args": [ 1, 0, 1 ] // newIndex, oldIndex, destIndex
+}
+```
+
+```typescript
+onSplideEvent(event)
+{
+    console.log('Splide event', event.name, 'with arguments', event.args);
+
+    switch (event.name) {
+        case 'moved':
+            const newIndex = event.args[0];
+            const oldIndex = event.args[1];
+            const destIndex = event.args[2];
+            break;
+    }
+}
+```
+
 ### Other
 
 You can also pass `containerClass` to append custom class for root `div.splide` node
@@ -143,4 +233,3 @@ Will produce:
     ...
 </div>
 ```
-
