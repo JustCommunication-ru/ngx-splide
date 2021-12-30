@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {NgxSplideComponent} from 'ngx-splide';
 
 @Component({
     selector: 'app-root',
@@ -21,6 +22,9 @@ export class AppComponent
 
     currentImageIndex = 0;
 
+    @ViewChild('mainSplide') mainSplide: NgxSplideComponent;
+    @ViewChild('secondarySplide') secondarySplide: NgxSplideComponent;
+
     addNewSlide()
     {
         this.runtime_images.push({
@@ -34,7 +38,13 @@ export class AppComponent
         '   </splide-slide>\n' +
         '</splide>';
 
-    selected_index_code = '<splide [(selectedSlideIndex)]="currentImageIndex" [options]="{ type: \'loop\', perPage: 1, keyboard: false, fixedHeight: 400 }">\n' +
+    sync_code = '<splide #mainSplide [syncWith]="secondarySplide" [options]="{ type: \'slide\', pagination: false, arrows: false,drag: true, lazyLoad: \'nearby\', preloadPages: 3, fixedHeight: 400 }">\n' +
+        '    <splide-slide *ngFor="let image of images">\n' +
+        '        <img [src]="image.src" alt="" />\n' +
+        '    </splide-slide>\n' +
+        '</splide>\n' +
+        '\n' +
+        '<splide #secondarySplide [syncWith]="mainSplide" [options]="{ rewind: true, isNavigation: true, gap: 5, focus: \'center\', pagination: false, cover: true, lazyLoad: \'nearby\', preloadPages: 20, fixedWidth: 60, fixedHeight: 60 }">\n' +
         '    <splide-slide *ngFor="let image of images">\n' +
         '        <img [src]="image.src" alt="" />\n' +
         '    </splide-slide>\n' +

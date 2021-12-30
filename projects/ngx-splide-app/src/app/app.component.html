@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="b-example-divider"></div>
+    <hr>
 
     <div class="container col-xxl-8 px-4 py-5">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
@@ -31,13 +31,43 @@
             </div>
             <div class="col-lg-6">
                 <h1 class="display-5 fw-bold lh-1 mb-3">With options</h1>
-
                 <pre><code [innerText]="options_code"></code></pre>
             </div>
         </div>
     </div>
 
-    <div class="b-example-divider"></div>
+    <hr>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <splide #mainSplide [syncWith]="secondarySplide" [options]="{ type: 'slide', pagination: false, arrows: false,drag: true, lazyLoad: 'nearby', preloadPages: 3, fixedHeight: 400 }">
+                    <splide-slide *ngFor="let image of images">
+                        <img [src]="image.src" alt="" />
+                    </splide-slide>
+                </splide>
+
+                <splide #secondarySplide [syncWith]="mainSplide" [options]="{ rewind: true, isNavigation: true, gap: 5, focus: 'center', pagination: false, cover: true, lazyLoad: 'nearby', preloadPages: 20, fixedWidth: 60, fixedHeight: 60 }">
+                    <splide-slide *ngFor="let image of images">
+                        <img [src]="image.src" alt="" />
+                    </splide-slide>
+                </splide>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Sync (<a href="https://splidejs.com/guides/apis/#sync" target="_blank">docs</a>)</h1>
+                <p>You can sync splide instances</p>
+
+                <p>Create <code>@ViewChild</code> in your controller:</p>
+                <pre><code>@ViewChild('mainSplide') mainSplide: NgxSplideComponent;
+@ViewChild('secondarySplide') secondarySplide: NgxSplideComponent;</code></pre>
+
+                <p>And pass instances you want to sync with <code>[syncWith]</code> attribute</p>
+                <pre><code [innerText]="sync_code"></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <hr>
 
     <div class="container col-xxl-8 px-4 py-5">
         <div class="row flex-lg-row align-items-center g-5 py-5">
@@ -77,7 +107,7 @@
         </div>
     </div>
 
-    <div class="b-example-divider"></div>
+    <hr>
 
     <div class="container col-xxl-8 px-4 py-5">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">

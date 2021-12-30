@@ -23,6 +23,7 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
 
     @Input() options: any = {};
     @Input() containerClass: string = '';
+    @Input() syncWith: NgxSplideComponent;
 
     @Output() onInit = new EventEmitter<any>();
     @Output() onSplideEvent = new EventEmitter<any>();
@@ -58,6 +59,10 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
     ngAfterViewInit()
     {
         this.splide = new Splide(this.splideElement.nativeElement, this.options);
+        if (this.syncWith) {
+            this.splide.sync(this.syncWith.getSplideInstance());
+        }
+
         this.onInit.emit(this.splide);
         this.addEventListeners();
         this.splide.mount();
@@ -259,6 +264,11 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
                 });
             })
         ;
+    }
+
+    getSplideInstance()
+    {
+        return this.splide;
     }
 
     ngOnDestroy()

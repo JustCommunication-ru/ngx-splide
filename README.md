@@ -203,6 +203,24 @@ onSplideEvent(event)
 }
 ```
 
+### Sync
+
+You can sync splide instances like it described in https://splidejs.com/guides/apis/#sync
+
+Just create `@ViewChild` in your controller:
+
+```typescript
+@ViewChild('mainSplide') mainSplide: NgxSplideComponent;
+@ViewChild('secondarySplide') secondarySplide: NgxSplideComponent;
+```
+
+And pass instances with `[syncWith]`:
+
+```angular2html
+<splide #mainSplide [syncWith]="secondarySplide">...</splide>
+<splide #secondarySplide [syncWith]="mainSplide">...</splide>
+```
+
 ### Other
 
 You can also pass `containerClass` to append custom class for root `div.splide` node
