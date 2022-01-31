@@ -1,3 +1,4 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
     AfterViewInit,
     Component,
@@ -5,7 +6,7 @@ import {
     ElementRef,
     Input, OnChanges, OnDestroy, Output,
     QueryList, SimpleChanges,
-    ViewChild, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef
+    ViewChild, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, Inject, PLATFORM_ID
 } from '@angular/core';
 import { NgxSplideSlideComponent } from './ngx-splide-slide.component';
 
@@ -54,10 +55,13 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
     @ViewChild('splideElement') splideElement: ElementRef;
     protected splide;
 
-    constructor(private cdr: ChangeDetectorRef) { }
+    constructor(private cdr: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: any) { }
 
     ngAfterViewInit()
     {
+        if (!isPlatformBrowser(this.platformId))
+            return;
+            
         this.splide = new Splide(this.splideElement.nativeElement, this.options);
         if (this.syncWith) {
             this.splide.sync(this.syncWith.getSplideInstance());
