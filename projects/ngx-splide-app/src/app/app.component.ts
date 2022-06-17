@@ -1,5 +1,5 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {NgxSplideComponent} from 'ngx-splide';
+import { Component, ViewChild } from '@angular/core';
+import { NgxSplideComponent } from 'projects/ngx-splide/src/public-api';
 
 @Component({
     selector: 'app-root',
