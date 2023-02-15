@@ -81,7 +81,7 @@ You can use `<splide />` root component with `<splide-slide />` components insid
 </splide>
 ```
 
-Please refer to official documentation for the list of supported options https://splidejs.com/options/
+Please refer to official documentation for the list of supported options https://splidejs.com/guides/options/
 
 ### Get splide instance
 
@@ -175,7 +175,7 @@ Event object:
 }
 ```
 
-```event-name``` – name of the splide event listed in https://splidejs.com/events/
+```event-name``` – name of the splide event listed in https://splidejs.com/guides/events/
 
 ```event-arguments``` – array of arguments.
 
