@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgxSplideComponent } from './ngx-splide.component';
 
@@ -6,7 +6,7 @@ describe('NgxSplideComponent', () => {
   let component: NgxSplideComponent;
   let fixture: ComponentFixture<NgxSplideComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ NgxSplideComponent ]
     })
