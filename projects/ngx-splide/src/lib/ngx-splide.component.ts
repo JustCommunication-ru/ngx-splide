@@ -57,29 +57,27 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
 
     constructor(private cdr: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: any) { }
 
-    ngAfterViewInit()
+    ngAfterViewInit(): void
     {
-        if (!isPlatformBrowser(this.platformId))
+        if (!isPlatformBrowser(this.platformId)) {
             return;
-            
+        }
+
         this.splide = new Splide(this.splideElement.nativeElement, this.options);
+
         if (this.syncWith) {
             this.splide.sync(this.syncWith.getSplideInstance());
         }
 
         this.onInit.emit(this.splide);
-        this.addEventListeners();
-        this.splide.mount();
+        this.mountSplideInstance();
 
         const slidesSubscription = this.slides.changes
             .subscribe((list: QueryList<NgxSplideSlideComponent>) => {
                 this.cdr.detectChanges();
 
                 setTimeout(() => {
-                    this.splide.destroy();
-                    this.splide.mount();
-
-                    this.addEventListeners();
+                    this.remountSplideInstance();
                 });
             })
         ;
@@ -273,6 +271,19 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
     getSplideInstance()
     {
         return this.splide;
+    }
+
+    mountSplideInstance()
+    {
+        this.splide.mount();
+        this.addEventListeners();
+    }
+
+    remountSplideInstance()
+    {
+        console.log('remountSplideInstance');
+        this.splide.destroy();
+        this.mountSplideInstance();
     }
 
     ngOnDestroy()

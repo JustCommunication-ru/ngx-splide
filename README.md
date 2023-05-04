@@ -216,15 +216,18 @@ Just create `@ViewChild` in your controller:
 
 ```typescript
 @ViewChild('mainSplide') mainSplide: NgxSplideComponent;
-@ViewChild('secondarySplide') secondarySplide: NgxSplideComponent;
 ```
 
 And pass instances with `[syncWith]`:
 
 ```angular2html
-<splide #mainSplide [syncWith]="secondarySplide">...</splide>
-<splide #secondarySplide [syncWith]="mainSplide">...</splide>
+<splide #mainSplide>...</splide>
+<splide [syncWith]="mainSplide">...</splide>
 ```
+
+Please note that `mainSplide` should be rendered before second splide.
+
+If you need more fine-grained control over sync you should use `onInit` methods and work with splide instances
 
 ### Other
 

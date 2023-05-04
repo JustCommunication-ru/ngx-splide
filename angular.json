@@ -58,7 +58,6 @@
             "main": "projects/ngx-splide-app/src/main.ts",
             "polyfills": "projects/ngx-splide-app/src/polyfills.ts",
             "tsConfig": "projects/ngx-splide-app/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/ngx-splide-app/src/favicon.ico",
               "projects/ngx-splide-app/src/assets"
@@ -71,7 +70,13 @@
             ],
             "scripts": [
                 "node_modules/@splidejs/splide/dist/js/splide.js"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -101,7 +106,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

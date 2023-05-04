@@ -38,16 +38,28 @@ export class AppComponent
         '   </splide-slide>\n' +
         '</splide>';
 
-    sync_code = '<splide #mainSplide [syncWith]="secondarySplide" [options]="{ type: \'slide\', pagination: false, arrows: false,drag: true, lazyLoad: \'nearby\', preloadPages: 3, fixedHeight: 400 }">\n' +
+    sync_code = '<splide #mainSplide [options]="{ type: \'slide\', pagination: false, arrows: false,drag: true, lazyLoad: \'nearby\', preloadPages: 3, fixedHeight: 400 }">\n' +
         '    <splide-slide *ngFor="let image of images">\n' +
         '        <img [src]="image.src" alt="" />\n' +
         '    </splide-slide>\n' +
         '</splide>\n' +
         '\n' +
-        '<splide #secondarySplide [syncWith]="mainSplide" [options]="{ rewind: true, isNavigation: true, gap: 5, focus: \'center\', pagination: false, cover: true, lazyLoad: \'nearby\', preloadPages: 20, fixedWidth: 60, fixedHeight: 60 }">\n' +
+        '<splide [syncWith]="mainSplide" [options]="{ rewind: true, isNavigation: true, gap: 5, focus: \'center\', pagination: false, cover: true, lazyLoad: \'nearby\', preloadPages: 20, fixedWidth: 60, fixedHeight: 60 }">\n' +
         '    <splide-slide *ngFor="let image of images">\n' +
         '        <img [src]="image.src" alt="" />\n' +
         '    </splide-slide>\n' +
+        '</splide>';
+
+    autoheight_code = '<splide [options]="{\n' +
+        '   type      : \'loop\',\n' +
+        '   direction : \'ttb\',\n' +
+        '   height    : \'20rem\',\n' +
+        '   focus     : \'center\',\n' +
+        '   autoHeight: true\n' +
+        '}">\n' +
+        '   <splide-slide *ngFor="let image of images">\n' +
+        '       <img [src]="image.src" alt="" />\n' +
+        '   </splide-slide>\n' +
         '</splide>';
 
     runtimeOptions = {
