@@ -11,6 +11,11 @@ https://justcommunication-ru.github.io/ngx-splide/
 
 ## Installation
 
+| Angular version | Library version | Splide version |
+|-----------------|-----------------|--------------|
+| &lt;=11         | ~1.0.0          | ^2.4.14      |
+| &gt;=12         | ~2.0.0          | ^4           |
+
 Using `npm`
 
 `npm i --save ngx-splide`
