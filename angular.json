@@ -166,7 +166,6 @@
       }
     }
   },
-  "defaultProject": "ngx-splide",
   "cli": {
     "analytics": false
   }
