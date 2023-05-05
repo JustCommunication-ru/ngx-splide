@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {NgxSplideComponent} from 'ngx-splide';
 
 @Component({
@@ -58,7 +58,9 @@ export class AppComponent
         '   autoHeight: true\n' +
         '}">\n' +
         '   <splide-slide *ngFor="let image of images">\n' +
-        '       <img [src]="image.src" alt="" />\n' +
+        '       <div style="height: 20rem;">\n' +
+        '           <img [src]="image.src" alt="" />\n' +
+        '       </div>\n' +
         '   </splide-slide>\n' +
         '</splide>';
 

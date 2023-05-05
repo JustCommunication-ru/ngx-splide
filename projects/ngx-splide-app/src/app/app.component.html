@@ -53,7 +53,9 @@
                     autoHeight: true
                 }">
                     <splide-slide *ngFor="let image of images">
-                        <img [src]="image.src" alt="" />
+                        <div style="height: 20rem;">
+                            <img [src]="image.src" alt="" />
+                        </div>
                     </splide-slide>
                 </splide>
             </div>
