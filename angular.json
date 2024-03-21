@@ -18,7 +18,7 @@
           "configurations": {
             "production": {
               "tsConfig": "projects/ngx-splide/tsconfig.lib.prod.json"
-            }
+            } 
           }
         },
         "test": {
