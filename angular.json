@@ -28,18 +28,6 @@
             "tsConfig": "projects/ngx-splide/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-splide/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-splide/tsconfig.lib.json",
-              "projects/ngx-splide/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -141,19 +129,6 @@
               "projects/ngx-splide-app/src/styles.css"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-splide-app/tsconfig.app.json",
-              "projects/ngx-splide-app/tsconfig.spec.json",
-              "projects/ngx-splide-app/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
