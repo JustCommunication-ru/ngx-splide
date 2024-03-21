@@ -16,6 +16,7 @@ https://justcommunication-ru.github.io/ngx-splide/
 | &lt;=11         | ~1.0.0          | ^2.4.14      |
 | &gt;=12         | ~2.0.0          | ^4           |
 | &gt;=13         | ~3.0.0          | ^4           |
+| &gt;=14         | ~4.0.0          | ^4           |
 
 Using `npm`
 
