@@ -1,6 +1,6 @@
 {
     "name": "ngx-splide",
-    "version": "7.0.0",
+    "version": "7.0.1",
     "description": "Splide.js integration with angular",
     "keywords": [
         "Splide",
@@ -19,7 +19,7 @@
     },
     "peerDependencies": {
         "@splidejs/splide": "^4",
-        "@angular/common": ">=12",
-        "@angular/core": ">=12"
+        "@angular/common": ">=17",
+        "@angular/core": ">=17"
     }
 }

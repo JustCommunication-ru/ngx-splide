@@ -9,8 +9,7 @@ import {
     ViewChild, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, Inject, PLATFORM_ID
 } from '@angular/core';
 import { NgxSplideSlideComponent } from './ngx-splide-slide.component';
-
-declare var Splide: any;
+import { Splide, Options as SplideOptions } from '@splidejs/splide';
 
 @Component({
     selector: 'splide',
@@ -22,7 +21,7 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
     @Input() selectedSlideIndex: number;
     @Output() selectedSlideIndexChange = new EventEmitter<number>();
 
-    @Input() options: any = {};
+    @Input() options: SplideOptions = {};
     @Input() containerClass: string = '';
     @Input() syncWith: NgxSplideComponent;
 
@@ -53,7 +52,7 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
     @ContentChildren(NgxSplideSlideComponent) public slides: QueryList<NgxSplideSlideComponent>;
 
     @ViewChild('splideElement') splideElement: ElementRef;
-    protected splide;
+    protected splide: Splide;
 
     constructor(private cdr: ChangeDetectorRef, @Inject(PLATFORM_ID) private platformId: any) { }
 
@@ -281,7 +280,6 @@ export class NgxSplideComponent implements AfterViewInit, OnChanges, OnDestroy
 
     remountSplideInstance()
     {
-        console.log('remountSplideInstance');
         this.splide.destroy();
         this.mountSplideInstance();
     }
