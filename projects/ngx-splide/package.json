@@ -15,10 +15,10 @@
         "url": "https://github.com/JustCommunication-ru/ngx-splide"
     },
     "dependencies": {
-        "tslib": "^2.0.0"
+        "tslib": "^2.0.0",
+        "@splidejs/splide": "^4"
     },
     "peerDependencies": {
-        "@splidejs/splide": "^4",
         "@angular/common": ">=17",
         "@angular/core": ">=17"
     }
