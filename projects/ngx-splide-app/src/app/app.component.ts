@@ -22,6 +22,8 @@ export class AppComponent
 
     currentImageIndex = 0;
 
+    autoplayInterval = 500;
+
     @ViewChild('mainSplide') mainSplide: NgxSplideComponent;
     @ViewChild('secondarySplide') secondarySplide: NgxSplideComponent;
 

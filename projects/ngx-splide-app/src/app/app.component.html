@@ -2,7 +2,7 @@
     <h1 class="visually-hidden">NGX Splide examples</h1>
 
     <div class="px-4 py-5 my-5 text-center">
-        <h1 class="display-5 fw-bold">Default</h1>
+        <h2 class="display-5 fw-bold">Default</h2>
         <div class="col-lg-6 mx-auto">
             <splide>
                 <splide-slide>
@@ -30,7 +30,7 @@
                 </splide>
             </div>
             <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">With options</h1>
+                <h2 class="display-5 fw-bold lh-1 mb-3">With options</h2>
                 <pre><code [innerText]="options_code"></code></pre>
             </div>
         </div>
@@ -41,7 +41,7 @@
     <div class="container col-xxl-8 px-4 py-5">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
             <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">Vertical example (Autoheight)</h1>
+                <h2 class="display-5 fw-bold lh-1 mb-3">Vertical example (Autoheight)</h2>
                 <pre><code [innerText]="autoheight_code"></code></pre>
             </div>
             <div class="col-10 col-sm-8 col-lg-6">
@@ -80,7 +80,7 @@
                 </splide>
             </div>
             <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">Sync (<a href="https://splidejs.com/guides/apis/#sync" target="_blank">docs</a>)</h1>
+                <h2 class="display-5 fw-bold lh-1 mb-3">Sync (<a href="https://splidejs.com/guides/apis/#sync" target="_blank">docs</a>)</h2>
                 <p>You can sync splide instances</p>
 
                 <p>Create <code>&#64;ViewChild</code> in your controller:</p>
@@ -104,7 +104,7 @@
                 </splide>
             </div>
             <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">Select slide</h1>
+                <h2 class="display-5 fw-bold lh-1 mb-3">Select slide</h2>
 
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-secondary" [ngClass]="{ 'active': index === currentImageIndex }" (click)="currentImageIndex = index" *ngFor="let image of runtime_images; let index = index">Image {{ index + 1 }}</button>
@@ -137,15 +137,36 @@
     <div class="container col-xxl-8 px-4 py-5">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
             <div class="col-10 col-sm-8 col-lg-6">
-                <splide [options]="runtimeOptions" (onSplideEvent)="onSplideEvent($event)" (onMoved)="onSplideMoved($event)">
+                <splide [options]="{ type: 'loop', pagination: false, arrows: true, drag: true, fixedHeight: 400, autoplay: true, interval: autoplayInterval }">
                     <splide-slide *ngFor="let image of images">
                         <img [src]="image.src" alt="" />
                     </splide-slide>
                 </splide>
             </div>
             <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">Events</h1>
+                <h2 class="display-5 fw-bold lh-1 mb-3">Autoplay</h2>
+
+                <label for="autoplayInterval" class="form-label">Autoplay interval in ms.</label>
+                <input type="range" class="form-range" id="autoplayInterval" [(ngModel)]="autoplayInterval" min="200" max="3000" step="50">
+                {{ autoplayInterval }} ms.
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <h2 class="display-5 fw-bold lh-1 mb-3">Events</h2>
                 <p>Open console to see events</p>
+            </div>
+            <div class="col-lg-6">
+                <splide [options]="runtimeOptions" (onSplideEvent)="onSplideEvent($event)" (onMoved)="onSplideMoved($event)">
+                    <splide-slide *ngFor="let image of images">
+                        <img [src]="image.src" alt="" />
+                    </splide-slide>
+                </splide>
             </div>
         </div>
     </div>
